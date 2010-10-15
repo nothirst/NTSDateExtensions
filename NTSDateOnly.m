@@ -18,7 +18,7 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 + (NSCalendar *)currentCalendar {
 	static NSCalendar *currentCalendar = nil;
 	if (currentCalendar == nil) {
-		currentCalendar = [NSCalendar currentCalendar];
+		currentCalendar = [[NSCalendar currentCalendar] retain];
 		//[currentCalendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 	}
 	return currentCalendar;
@@ -27,7 +27,7 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 + (NSCalendar *)standardizedCalendar {
 	static NSCalendar *standardizedCalendar = nil;
 	if (standardizedCalendar == nil) {
-		standardizedCalendar = [NSCalendar currentCalendar];
+		standardizedCalendar = [[NSCalendar currentCalendar] retain];
 		[standardizedCalendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 	}
 	return standardizedCalendar;
