@@ -15,37 +15,42 @@ static NSInteger standardizedHour = 12;
 
 @implementation NSDate (NTSExtensions)
 
-+ (NSCalendar *)currentCalendar {
-
++ (NSCalendar *)currentCalendar
+{
 	static NSCalendar *currentCalendar = nil;
-	if (currentCalendar == nil)
+	if (currentCalendar == nil) {
 		currentCalendar = [[NSCalendar currentCalendar] retain];
+	}
 
 	return currentCalendar;
 }
 
-+ (NSDate *)zeroHourDate:(NSDate *)aDate {
++ (NSDate *)zeroHourDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
 
-	if (aDate == nil) return nil;
-	
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
 	return [[NSDate currentCalendar] dateFromComponents:comps];
 }
 
-+ (NSDate *)zeroHourToday {
-
-    return [NSDate zeroHourDate:[NSDate date]];
++ (NSDate *)zeroHourToday
+{
+	return [NSDate zeroHourDate:[NSDate date]];
 }
 
-+ (NSDate *)zeroHourYesterday {
-
-	return [[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate zeroHourToday]];
++ (NSDate *)zeroHourYesterday
+{
+	return [[[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate zeroHourToday]] autorelease];
 }
 
-+ (NSDate *)midnightDate:(NSDate *)aDate {
++ (NSDate *)midnightDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
 
-	if (aDate == nil) return nil;
-	
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
 	[comps setHour:0];
 	[comps setMinute:0];
@@ -53,59 +58,72 @@ static NSInteger standardizedHour = 12;
 	return [[NSDate currentCalendar] dateFromComponents:comps];
 }
 
-+ (NSDate *)midnightToday {
-
-    return [NSDate midnightDate:[NSDate date]];
++ (NSDate *)midnightToday
+{
+	return [NSDate midnightDate:[NSDate date]];
 }
 
-+ (NSDate *)midnightYesterday {
-
-	return [[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate midnightToday]];
++ (NSDate *)midnightYesterday
+{
+	return [[[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate midnightToday]] autorelease];
 }
 
-+ (NSDate *)standardizedDate:(NSDate *)aDate {
++ (NSDate *)standardizedDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
 
-	if (aDate == nil) return nil;
-	
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
 	[comps setHour:standardizedHour];
 	return [[NSDate currentCalendar] dateFromComponents:comps];
 }
 
-+ (NSDate *)standardizedDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay {
-
++ (NSDate *)standardizedDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay
+{
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setYear:aYear];
 	[comps setMonth:aMonth];
 	[comps setDay:aDay];
 	[comps setHour:standardizedHour];
-	return [[NSDate currentCalendar] dateFromComponents:comps];
+	NSDate *date = [[NSDate currentCalendar] dateFromComponents:comps];
+	[comps release], comps = nil;
+	return date;
 }
 
-+ (NSDate *)standardizedToday {
-
++ (NSDate *)standardizedToday
+{
 	return [NSDate standardizedDate:[NSDate date]];
 }
 
-+ (NSDate *)standardizedYesterday {
-
-	return [[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate standardizedToday]];
++ (NSDate *)standardizedYesterday
+{
+	return [[[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate standardizedToday]] autorelease];
 }
 
-+ (NSDate *)startOfMonthDate:(NSDate *)aDate {
++ (NSDate *)standardizedTomorrow
+{
+	return [[[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate standardizedToday]] autorelease];
+}
 
-	if (aDate == nil) return nil;
-	
++ (NSDate *)startOfMonthDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
+
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
 	[comps setDay:1];
 	[comps setHour:standardizedHour];
 	return [[NSDate currentCalendar] dateFromComponents:comps];
 }
 
-+ (NSDate *)startOfYearDate:(NSDate *)aDate {
++ (NSDate *)startOfYearDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
 
-	if (aDate == nil) return nil;
-	
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
 	[comps setMonth:1];
 	[comps setDay:1];
@@ -113,10 +131,12 @@ static NSInteger standardizedHour = 12;
 	return [[NSDate currentCalendar] dateFromComponents:comps];
 }
 
-+ (NSDate *)startOfPreviousYearDate:(NSDate *)aDate {
++ (NSDate *)startOfPreviousYearDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
 
-	if (aDate == nil) return nil;
-	
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
 	[comps setYear:[comps year] - 1];
 	[comps setMonth:1];
@@ -125,28 +145,64 @@ static NSInteger standardizedHour = 12;
 	return [[NSDate currentCalendar] dateFromComponents:comps];
 }
 
-- (NSDate *)dateByAddingDays:(NSInteger)days {
-
-	return [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)days * dayTimeInterval sinceDate:self];
+- (NSDate *)dateByAddingDays:(NSInteger)days
+{
+	return [[[NSDate alloc] initWithTimeInterval:(NSTimeInterval)days * dayTimeInterval sinceDate:self]  autorelease];
 }
 
-- (NSDate *)dateByAddingWeeks:(NSInteger)weeks {
-
+- (NSDate *)dateByAddingWeeks:(NSInteger)weeks
+{
 	return [self dateByAddingDays:(weeks * 7)];
 }
 
-- (NSDate *)dateByAddingMonths:(NSInteger)months {
-
+- (NSDate *)dateByAddingMonths:(NSInteger)months
+{
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setMonth:months];
-	return [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
+	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
+	[comps release], comps = nil;
+	return date;
 }
 
-- (NSDate *)dateByAddingYears:(NSInteger)years {
-	
+- (NSDate *)dateByAddingYears:(NSInteger)years
+{
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setYear:years];
-	return [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
+	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
+	[comps release], comps = nil;
+	return date;
+}
+
+- (BOOL)isToday
+{
+	NSDate *today = [[NSDate alloc] init];
+	NSDateComponents *todayComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
+
+	[today release], today = nil;
+
+	NSDateComponents *selfComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+
+	return [todayComponents year] == [selfComponents year] && [todayComponents month] == [selfComponents month] && [todayComponents day] == [selfComponents day];
+}
+
+- (BOOL)isYesterday
+{
+	NSDate *yesterday = [NSDate standardizedYesterday];
+	NSDateComponents *yesterdayComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:yesterday];
+
+	NSDateComponents *selfComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+
+	return [yesterdayComponents year] == [selfComponents year] && [yesterdayComponents month] == [selfComponents month] && [yesterdayComponents day] == [selfComponents day];
+}
+
+- (BOOL)isTomorrow
+{
+	NSDate *tomorrow = [NSDate standardizedTomorrow];
+	NSDateComponents *tomorrowComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:tomorrow];
+
+	NSDateComponents *selfComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+
+	return [tomorrowComponents year] == [selfComponents year] && [tomorrowComponents month] == [selfComponents month] && [tomorrowComponents day] == [selfComponents day];
 }
 
 @end

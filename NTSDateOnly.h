@@ -8,12 +8,10 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-#import <Cocoa/Cocoa.h>
-
 @class NTSYearMonth;
 
 @interface NTSDateOnly : NSObject {
-	NSUInteger dateYMD; 
+	NSUInteger dateYMD;
 }
 
 + (NSCalendar *)currentCalendar;
@@ -23,13 +21,15 @@
 + (NTSDateOnly *)startOfMonthDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfYearDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfPreviousYearDate:(NTSDateOnly *)aDate;
++ (NTSDateOnly *)dateWithNumber:(NSNumber *)aNumber;
++ (NTSDateOnly *)dateOnlyWithDate:(NSDate *)aDate;
 
 - (const char *)objCType;
 - (const char *)UTF8String;
 - (unsigned int)unsignedIntValue;
 - (unsigned int)intValue;
 - (long long)longLongValue;
-	
+
 - (id)initWithDate:(NSDate *)aDate;
 - (id)initWithYearMonth:(NTSYearMonth *)aYearMonth;
 - (id)initWithDay:(NSInteger)aDay;
@@ -55,7 +55,7 @@
 - (NTSDateOnly *)dateByAddingWeeks:(NSInteger)weeks;
 - (NTSDateOnly *)dateByAddingMonths:(NSInteger)months;
 - (NTSDateOnly *)dateByAddingYears:(NSInteger)years;
-	
+
 @property (assign) NSUInteger dateYMD;
 
 @end

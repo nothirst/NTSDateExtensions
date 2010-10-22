@@ -8,8 +8,8 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-#import "NTSDateFormatter.h"
 #import "NSDate_NTSExtensions.h"
+#import "NTSDateFormatter.h"
 
 @implementation NTSDateFormatter
 
@@ -29,16 +29,18 @@
 	finalCharSet = [workingSet copy];
 	[workingSet release];
 	[scanner setCharactersToBeSkipped:finalCharSet];
-	if ([scanner scanInteger:&first])
-		if ([scanner scanInteger:&second])
+	if ([scanner scanInteger:&first]) {
+		if ([scanner scanInteger:&second]) {
 			[scanner scanInteger:&third];
+		}
+	}
 	NSInteger month;
 	NSInteger day;
 	NSInteger year;
-	
+
 	if (third != -1 && yearStart < monthStart && yearStart < dayStart) {
 		year = first;
-		if (monthStart > dayStart){
+		if (monthStart > dayStart) {
 			day = second;
 			month = third;
 		} else {
@@ -56,22 +58,26 @@
 		year = third;
 	}
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate standardizedToday]];
-	if (day == -1)
+	if (day == -1) {
 		day = [comps day];
-	if (month == -1)
+	}
+	if (month == -1) {
 		month = [comps month];
-	if (year == -1)
+	}
+	if (year == -1) {
 		year = [comps year];
-	if (year < 50)
+	}
+	if (year < 50) {
 		year += 2000;
-	else if (year < 100)
+	} else if (year < 100) {
 		year += 1900;
+	}
 	[comps setYear:year];
 	[comps setMonth:month];
 	[comps setDay:day];
 	NSDate *date = [[NSDate currentCalendar] dateFromComponents:comps];
 	*obj = date;
-	
+
 	if (date == nil) {
 		*errorString = [NSString stringWithFormat:NSLocalizedString(@"Invalid date: %@", @"Invalid date: %@"), string];
 		return NO;

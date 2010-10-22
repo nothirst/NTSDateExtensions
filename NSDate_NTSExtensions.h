@@ -8,9 +8,7 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-#import <Cocoa/Cocoa.h>
-
-@interface NSDate (NTSExtensions) 
+@interface NSDate (NTSExtensions)
 
 + (NSCalendar *)currentCalendar;
 + (NSDate *)zeroHourDate:(NSDate *)aDate;
@@ -26,10 +24,14 @@
 + (NSDate *)standardizedDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay;
 + (NSDate *)standardizedToday;
 + (NSDate *)standardizedYesterday;
++ (NSDate *)standardizedTomorrow;
 
 - (NSDate *)dateByAddingDays:(NSInteger)weeks;
 - (NSDate *)dateByAddingWeeks:(NSInteger)weeks;
 - (NSDate *)dateByAddingMonths:(NSInteger)months;
 - (NSDate *)dateByAddingYears:(NSInteger)years;
+- (BOOL)isToday;
+- (BOOL)isYesterday;
+- (BOOL)isTomorrow;
 
 @end

@@ -11,9 +11,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
-@interface NTSDateFormatter : NSDateFormatter {
-
-}
+@interface NTSDateFormatter : NSDateFormatter {}
 
 @end
