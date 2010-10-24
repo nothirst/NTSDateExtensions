@@ -86,7 +86,11 @@
 - (NSString *)label
 {
 	// The day doesn't matter because the month and year are the label designators
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+	return [NSString stringWithFormat:@"%@", [[[NTSDateOnly alloc] initWithYear:self.year month:self.month day:1] dateValue]];
+#elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
 	return [NSString stringWithFormat:@"%@", [[[[NTSDateOnly alloc] initWithYear:self.year month:self.month day:1] dateValue] descriptionWithCalendarFormat:@"%b %Y" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+#endif
 }
 
 - (NSInteger)integerValue
