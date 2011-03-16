@@ -200,6 +200,12 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	return dateYMD % 100;
 }
 
+- (NSInteger)dayOfTheWeek
+{
+	NSDateComponents *comps = [[NTSDateOnly currentCalendar] components:NSWeekdayCalendarUnit fromDate:[self dateValue]];
+	return [comps weekday]; 
+}
+
 - (NSDate *)dateValue
 {
 	if ([self intValue] == 0) {

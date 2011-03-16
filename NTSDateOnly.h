@@ -42,6 +42,7 @@
 - (NSInteger)year;
 - (NSInteger)month;
 - (NSInteger)day;
+- (NSInteger)dayOfTheWeek; //Sunday is 1
 - (NSDate *)dateValue;
 - (NSNumber *)numberValue;
 
