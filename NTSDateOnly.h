@@ -17,6 +17,7 @@
 + (NSCalendar *)currentCalendar;
 + (NSCalendar *)standardizedCalendar;
 + (NTSDateOnly *)today;
++ (NTSDateOnly *)tomorrow;
 + (NTSDateOnly *)yesterday;
 + (NTSDateOnly *)startOfMonthDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfYearDate:(NTSDateOnly *)aDate;

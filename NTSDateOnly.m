@@ -39,6 +39,15 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	return [[[NTSDateOnly alloc] init] autorelease];
 }
 
++ (NTSDateOnly *)tomorrow
+{
+	NSDate *date = [[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate date]];
+	NTSDateOnly *dateOnly = [[[NTSDateOnly alloc] initWithDate:date] autorelease];
+	[date release];
+	
+	return dateOnly;
+}
+
 + (NTSDateOnly *)yesterday
 {
 	NSDate *date = [[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate date]];
