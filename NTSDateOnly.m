@@ -8,8 +8,9 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-#import "NSDate_NTSExtensions.h"
 #import "NTSDateOnly.h"
+
+#import "NSDate_NTSExtensions.h"
 
 static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
