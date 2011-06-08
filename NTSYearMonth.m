@@ -30,7 +30,7 @@
 
 - (id)initWithDateOnly:(NTSDateOnly *)aDate startDay:(NSInteger)aDay
 {
-	[self initWithYear:aDate.year month:aDate.month day:aDay];
+	self = [self initWithYear:aDate.year month:aDate.month day:aDay];
 	if ([aDate isGreaterThan:[self createEndDate]]) {
 		[self incrementMonth];
 	} else if ([aDate isLessThan:[self createStartDate]]) {

@@ -11,6 +11,7 @@
 #import "NTSDateOnly.h"
 
 #import "NSDate_NTSExtensions.h"
+#import "NTSYearMonth.h"
 
 static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
