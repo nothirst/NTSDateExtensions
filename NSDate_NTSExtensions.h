@@ -34,4 +34,6 @@
 - (BOOL)isYesterday;
 - (BOOL)isTomorrow;
 
+- (NSInteger)timeIntervalInDaysSinceDate:(NSDate *)referenceDate;
+
 @end

@@ -17,6 +17,8 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
 @implementation NTSDateOnly
 
+@synthesize dateYMD;
+
 + (NSCalendar *)currentCalendar
 {
 	static NSCalendar *currentCalendar = nil;
@@ -46,7 +48,7 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	NSDate *date = [[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate date]];
 	NTSDateOnly *dateOnly = [[[NTSDateOnly alloc] initWithDate:date] autorelease];
 	[date release];
-	
+    
 	return dateOnly;
 }
 
@@ -294,6 +296,10 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	return [date autorelease];
 }
 
-@synthesize dateYMD;
+- (NSInteger)timeIntervalInDaysSinceDate:(NTSDateOnly *)referenceDate
+{
+    return [[self dateValue] timeIntervalInDaysSinceDate:[referenceDate dateValue]];
+}
+
 
 @end

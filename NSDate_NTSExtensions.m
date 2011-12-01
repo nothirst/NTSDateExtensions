@@ -205,4 +205,12 @@ static NSInteger standardizedHour = 12;
 	return [tomorrowComponents year] == [selfComponents year] && [tomorrowComponents month] == [selfComponents month] && [tomorrowComponents day] == [selfComponents day];
 }
 
+- (NSInteger)timeIntervalInDaysSinceDate:(NSDate *)referenceDate
+{
+	NSDate *standardizedSelf = [NSDate standardizedDate:self];
+	NSDate *standardizedReferenceDate = [NSDate standardizedDate:referenceDate];
+
+	return (NSInteger)([standardizedSelf timeIntervalSinceDate:standardizedReferenceDate] / dayTimeInterval);
+}
+
 @end

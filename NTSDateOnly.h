@@ -58,6 +58,8 @@
 - (NTSDateOnly *)dateByAddingMonths:(NSInteger)months;
 - (NTSDateOnly *)dateByAddingYears:(NSInteger)years;
 
+- (NSInteger)timeIntervalInDaysSinceDate:(NTSDateOnly *)referenceDate;
+
 @property (assign) NSUInteger dateYMD;
 
 @end
