@@ -19,9 +19,13 @@
 + (NTSDateOnly *)today;
 + (NTSDateOnly *)tomorrow;
 + (NTSDateOnly *)yesterday;
++ (NTSDateOnly *)startOfWeekDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfMonthDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfYearDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfPreviousYearDate:(NTSDateOnly *)aDate;
++ (NTSDateOnly *)endOfWeekDate:(NTSDateOnly *)aDate;
++ (NTSDateOnly *)endOfMonthDate:(NTSDateOnly *)aDate;
++ (NTSDateOnly *)endOfYearDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)dateWithNumber:(NSNumber *)aNumber;
 + (NTSDateOnly *)dateOnlyWithDate:(NSDate *)aDate;
 

@@ -60,6 +60,11 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	return [ntsDateOnly autorelease];
 }
 
++ (NTSDateOnly *)startOfWeekDate:(NTSDateOnly *)aDate
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate startOfWeekDate:[aDate dateValue]]];
+}
+
 + (NTSDateOnly *)startOfMonthDate:(NTSDateOnly *)aDate
 {
 	if (aDate == nil) {
@@ -80,11 +85,26 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
 + (NTSDateOnly *)startOfPreviousYearDate:(NTSDateOnly *)aDate
 {
-	if (aDate == nil) {
-		return nil;
-	}
+    if (aDate == nil) {
+        return nil;
+    }
+    
+    return [[[NTSDateOnly alloc] initWithYear:[aDate year] - 1 month:1 day:1] autorelease];
+}
 
-	return [[[NTSDateOnly alloc] initWithYear:[aDate year] - 1 month:1 day:1] autorelease];
++ (NTSDateOnly *)endOfWeekDate:(NTSDateOnly *)aDate
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate endOfWeekDate:[aDate dateValue]]];
+}
+
++ (NTSDateOnly *)endOfMonthDate:(NTSDateOnly *)aDate;
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate endOfMonthDate:[aDate dateValue]]];
+}
+
++ (NTSDateOnly *)endOfYearDate:(NTSDateOnly *)aDate;
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate endOfYearDate:[aDate dateValue]]];
 }
 
 + (NTSDateOnly *)dateWithNumber:(NSNumber *)aNumber

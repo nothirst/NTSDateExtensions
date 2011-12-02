@@ -106,6 +106,19 @@ static NSInteger standardizedHour = 12;
 	return [[[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate standardizedToday]] autorelease];
 }
 
++ (NSDate *)startOfWeekDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
+
+	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:aDate];
+	[comps setDay:([comps day] - ([comps weekday] - 1))];
+	[comps setHour:standardizedHour];
+
+	return [[NSDate currentCalendar] dateFromComponents:comps];
+}
+
 + (NSDate *)startOfMonthDate:(NSDate *)aDate
 {
 	if (aDate == nil) {
@@ -136,13 +149,49 @@ static NSInteger standardizedHour = 12;
 	if (aDate == nil) {
 		return nil;
 	}
-
+    
 	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
 	[comps setYear:[comps year] - 1];
 	[comps setMonth:1];
 	[comps setDay:1];
 	[comps setHour:standardizedHour];
 	return [[NSDate currentCalendar] dateFromComponents:comps];
+}
+
++ (NSDate *)endOfWeekDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
+    
+    NSRange weekRange = [[NSDate currentCalendar] maximumRangeOfUnit:NSWeekdayCalendarUnit];
+    return [[self startOfWeekDate:aDate] dateByAddingDays:weekRange.length - 1];
+}
+
++ (NSDate *)endOfMonthDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
+    
+    NSRange monthRange = [[NSDate currentCalendar] rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:aDate];
+    return [[self startOfMonthDate:aDate] dateByAddingDays:monthRange.length - 1];
+}
+
++ (NSDate *)endOfYearDate:(NSDate *)aDate
+{
+	if (aDate == nil) {
+		return nil;
+	}
+    
+	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
+	[comps setMonth:[[NSDate currentCalendar] maximumRangeOfUnit:NSMonthCalendarUnit].length];
+	[comps setDay:1];
+	[comps setHour:standardizedHour];
+    NSDate *firstDayOfLastMonth = [[NSDate currentCalendar] dateFromComponents:comps];
+    
+    NSRange monthRange = [[NSDate currentCalendar] rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:firstDayOfLastMonth];
+    return [firstDayOfLastMonth dateByAddingDays:monthRange.length - 1];
 }
 
 - (NSDate *)dateByAddingDays:(NSInteger)days
