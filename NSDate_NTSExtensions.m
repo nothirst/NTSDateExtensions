@@ -112,8 +112,9 @@ static NSInteger standardizedHour = 12;
 		return nil;
 	}
 
-	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:aDate];
-	[comps setDay:([comps day] - ([comps weekday] - 1))];
+	NSDate *beginningOfWeek = nil;
+	[[NSDate currentCalendar] rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek interval:NULL forDate:aDate];
+	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:beginningOfWeek];
 	[comps setHour:standardizedHour];
 
 	return [[NSDate currentCalendar] dateFromComponents:comps];
