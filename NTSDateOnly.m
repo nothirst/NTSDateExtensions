@@ -337,7 +337,7 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
 	return [NSString stringWithFormat:@"%@", [self dateValue]];
 #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
-	return [NSString stringWithFormat:@"%@", [[self dateValue] descriptionWithCalendarFormat:@"%b %Y" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+	return [NSString stringWithFormat:@"%@", [[self dateValue] descriptionWithCalendarFormat:@"%d %b %Y" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
 #endif
 }
 
