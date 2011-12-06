@@ -42,6 +42,8 @@
 - (NTSDateOnly *)firstHalfEndDate;
 - (NSString *)labelWithFirstHalfDate:(NTSDateOnly *)aDate;
 
+- (NSComparisonResult)compare:(NTSYearMonth *)other;
+
 @property (assign) NSInteger year;
 @property (assign) NSInteger month;
 @property (assign) NSInteger day;

@@ -93,6 +93,17 @@
 #endif
 }
 
+- (NSComparisonResult)compare:(NTSYearMonth *)other
+{
+    if ([self integerValue] < [other integerValue]) {
+        return NSOrderedAscending;
+    } else if ([self integerValue] > [other integerValue]) {
+        return NSOrderedDescending;
+    }
+    
+    return NSOrderedSame;
+}
+
 - (NSInteger)integerValue
 {
 	return (year * 100) + month;
