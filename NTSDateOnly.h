@@ -51,6 +51,7 @@
 - (NSDate *)dateValue;
 - (NSNumber *)numberValue;
 
+- (NSComparisonResult)compare:(NTSDateOnly *)other;
 - (BOOL)isEqualTo:(NTSDateOnly *)aDate;
 - (BOOL)isLessThan:(NTSDateOnly *)aDate;
 - (BOOL)isLessThanOrEqualTo:(NTSDateOnly *)aDate;

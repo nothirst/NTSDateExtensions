@@ -259,6 +259,17 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	return [NSNumber numberWithUnsignedLong:dateYMD];
 }
 
+- (NSComparisonResult)compare:(NTSDateOnly *)other
+{
+    if ([self dateYMD] < [other dateYMD]) {
+        return NSOrderedAscending;
+    } else if ([self dateYMD] > [other dateYMD]) {
+        return NSOrderedDescending;
+    }
+    
+    return NSOrderedSame;
+}
+
 - (BOOL)isEqualTo:(NTSDateOnly *)aDate
 {
 	return (self.dateYMD == aDate.dateYMD) ? YES : NO;
