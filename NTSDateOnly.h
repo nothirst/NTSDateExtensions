@@ -64,6 +64,8 @@
 
 - (NSInteger)timeIntervalInDaysSinceDate:(NTSDateOnly *)referenceDate;
 
+- (NSString *)label;
+
 @property (assign) NSUInteger dateYMD;
 
 @end
