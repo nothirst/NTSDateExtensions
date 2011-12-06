@@ -221,4 +221,20 @@
     return [[NTSYearMonth allocWithZone:zone] initWithYear:self.year month:self.month day:self.day];
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[NTSYearMonth class]] == NO) {
+        return NO;
+    }
+    
+    NTSYearMonth *yearMonthObject = (NTSYearMonth *)object;
+    
+    return (yearMonthObject.year == self.year && yearMonthObject.month == self.month);
+}
+
+- (NSUInteger)hash
+{
+    return [self integerValue];
+}
+
 @end
