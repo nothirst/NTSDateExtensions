@@ -10,7 +10,7 @@
 
 @class NTSDateOnly;
 
-@interface NTSYearMonth : NSObject {
+@interface NTSYearMonth : NSObject <NSCopying> {
 	NSInteger year;
 	NSInteger month;
 	NSInteger day;

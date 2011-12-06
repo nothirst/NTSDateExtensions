@@ -17,6 +17,10 @@
 
 @implementation NTSYearMonth
 
+@synthesize year;
+@synthesize month;
+@synthesize day;
+
 - (id)init
 {
 	return [self initWithDateOnly:[NTSDateOnly today]];
@@ -212,8 +216,9 @@
 	return [NSString stringWithFormat:@"%@/%@", [self label], ([self isFirstHalfDate:aDate]) ? NSLocalizedString(@"First Half", @"First Half"):NSLocalizedString(@"Second Half", @"Second Half")];
 }
 
-@synthesize year;
-@synthesize month;
-@synthesize day;
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[NTSYearMonth allocWithZone:zone] initWithYear:self.year month:self.month day:self.day];
+}
 
 @end
