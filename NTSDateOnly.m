@@ -15,27 +15,26 @@
 
 static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
+NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
+
 @implementation NTSDateOnly
 
 @synthesize dateYMD;
 
 + (NSCalendar *)currentCalendar
 {
-	static NSCalendar *currentCalendar = nil;
-	if (currentCalendar == nil) {
-		currentCalendar = [[NSCalendar currentCalendar] retain];
-	}
-	return currentCalendar;
-}
-
-+ (NSCalendar *)standardizedCalendar
-{
-	static NSCalendar *standardizedCalendar = nil;
-	if (standardizedCalendar == nil) {
-		standardizedCalendar = [[NSCalendar currentCalendar] retain];
-		[standardizedCalendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-	}
-	return standardizedCalendar;
+    NSThread *currentThread = [NSThread currentThread];
+    if (currentThread == nil) { //ZOMBIE THREAD!!
+        return [[NSCalendar currentCalendar] copy];
+    }
+    
+    NSCalendar *cachedThreadCalendar = [currentThread.threadDictionary objectForKey:NTSDateOnlyCurrentCalendarKey];
+    if (cachedThreadCalendar == nil) {
+        cachedThreadCalendar = [[NSCalendar currentCalendar] copy];
+        [currentThread.threadDictionary setObject:cachedThreadCalendar forKey:NTSDateOnlyCurrentCalendarKey];
+    }
+    
+	return cachedThreadCalendar;
 }
 
 + (NTSDateOnly *)today

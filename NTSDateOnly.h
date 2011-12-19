@@ -15,7 +15,6 @@
 }
 
 + (NSCalendar *)currentCalendar;
-+ (NSCalendar *)standardizedCalendar;
 + (NTSDateOnly *)today;
 + (NTSDateOnly *)tomorrow;
 + (NTSDateOnly *)yesterday;
