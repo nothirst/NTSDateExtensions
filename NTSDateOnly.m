@@ -345,4 +345,20 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
     return [[NTSDateOnly allocWithZone:zone] initWithDateYMD:self.dateYMD];
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[NTSDateOnly class]] == NO) {
+        return NO;
+    }
+    
+    NTSDateOnly *dateOnlyObject = (NTSDateOnly *)object;
+    
+    return (dateOnlyObject.year == self.year && dateOnlyObject.month == self.month && dateOnlyObject.day == self.day);
+}
+
+- (NSUInteger)hash
+{
+    return [self intValue];
+}
+
 @end
