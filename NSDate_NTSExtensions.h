@@ -38,6 +38,8 @@
 - (BOOL)isYesterday;
 - (BOOL)isTomorrow;
 
+- (NSNumber *)numberValue;
+
 - (NSInteger)timeIntervalInDaysSinceDate:(NSDate *)referenceDate;
 
 @end

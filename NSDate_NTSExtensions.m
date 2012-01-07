@@ -252,6 +252,11 @@ static NSInteger standardizedHour = 12;
 	return [tomorrowComponents year] == [selfComponents year] && [tomorrowComponents month] == [selfComponents month] && [tomorrowComponents day] == [selfComponents day];
 }
 
+- (NSNumber *)numberValue
+{
+    return [[NTSDateOnly dateOnlyWithDate:self] numberValue];
+}
+
 - (NSInteger)timeIntervalInDaysSinceDate:(NSDate *)referenceDate
 {
 	NSDate *standardizedSelf = [NSDate standardizedDate:self];
