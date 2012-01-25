@@ -25,12 +25,12 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 {
     NSThread *currentThread = [NSThread currentThread];
     if (currentThread == nil) { //ZOMBIE THREAD!!
-        return [[NSCalendar currentCalendar] copy];
+        return [NSCalendar currentCalendar];
     }
     
     NSCalendar *cachedThreadCalendar = [currentThread.threadDictionary objectForKey:NTSDateOnlyCurrentCalendarKey];
     if (cachedThreadCalendar == nil) {
-        cachedThreadCalendar = [[NSCalendar currentCalendar] copy];
+        cachedThreadCalendar = [NSCalendar currentCalendar];
         [currentThread.threadDictionary setObject:cachedThreadCalendar forKey:NTSDateOnlyCurrentCalendarKey];
     }
     
