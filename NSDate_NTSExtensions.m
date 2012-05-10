@@ -9,6 +9,7 @@
 //
 
 #import "NSDate_NTSExtensions.h"
+#import "NTSDateOnly.h"
 
 static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 static NSInteger standardizedHour = 12;
