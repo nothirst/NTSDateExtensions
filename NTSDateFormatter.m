@@ -57,7 +57,7 @@
 		}
 		year = third;
 	}
-	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate standardizedToday]];
+	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate zeroHourToday]];
 	if (day == -1) {
 		day = [comps day];
 	}
