@@ -17,9 +17,13 @@
 + (NSDate *)midnightDate:(NSDate *)aDate;
 + (NSDate *)midnightToday;
 + (NSDate *)midnightYesterday;
++ (NSDate *)startOfWeekDate:(NSDate *)aDate;
 + (NSDate *)startOfMonthDate:(NSDate *)aDate;
 + (NSDate *)startOfYearDate:(NSDate *)aDate;
 + (NSDate *)startOfPreviousYearDate:(NSDate *)aDate;
++ (NSDate *)endOfWeekDate:(NSDate *)aDate;
++ (NSDate *)endOfMonthDate:(NSDate *)aDate;
++ (NSDate *)endOfYearDate:(NSDate *)aDate;
 + (NSDate *)standardizedDate:(NSDate *)aDate;
 + (NSDate *)standardizedDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay;
 + (NSDate *)standardizedToday;
@@ -33,5 +37,9 @@
 - (BOOL)isToday;
 - (BOOL)isYesterday;
 - (BOOL)isTomorrow;
+
+- (NSNumber *)numberValue;
+
+- (NSInteger)timeIntervalInDaysSinceDate:(NSDate *)referenceDate;
 
 @end

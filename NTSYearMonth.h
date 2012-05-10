@@ -10,7 +10,7 @@
 
 @class NTSDateOnly;
 
-@interface NTSYearMonth : NSObject {
+@interface NTSYearMonth : NSObject <NSCopying> {
 	NSInteger year;
 	NSInteger month;
 	NSInteger day;
@@ -41,6 +41,8 @@
 - (NTSDateOnly *)firstHalfStartDate;
 - (NTSDateOnly *)firstHalfEndDate;
 - (NSString *)labelWithFirstHalfDate:(NTSDateOnly *)aDate;
+
+- (NSComparisonResult)compare:(NTSYearMonth *)other;
 
 @property (assign) NSInteger year;
 @property (assign) NSInteger month;

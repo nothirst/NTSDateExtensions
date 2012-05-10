@@ -8,30 +8,33 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-#import "NSDate_NTSExtensions.h"
 #import "NTSDateOnly.h"
+
+#import "NSDate_NTSExtensions.h"
+#import "NTSYearMonth.h"
 
 static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
+NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
+
 @implementation NTSDateOnly
+
+@synthesize dateYMD;
 
 + (NSCalendar *)currentCalendar
 {
-	static NSCalendar *currentCalendar = nil;
-	if (currentCalendar == nil) {
-		currentCalendar = [[NSCalendar currentCalendar] retain];
-	}
-	return currentCalendar;
-}
-
-+ (NSCalendar *)standardizedCalendar
-{
-	static NSCalendar *standardizedCalendar = nil;
-	if (standardizedCalendar == nil) {
-		standardizedCalendar = [[NSCalendar currentCalendar] retain];
-		[standardizedCalendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-	}
-	return standardizedCalendar;
+    NSThread *currentThread = [NSThread currentThread];
+    if (currentThread == nil) { //ZOMBIE THREAD!!
+        return [NSCalendar currentCalendar];
+    }
+    
+    NSCalendar *cachedThreadCalendar = [currentThread.threadDictionary objectForKey:NTSDateOnlyCurrentCalendarKey];
+    if (cachedThreadCalendar == nil) {
+        cachedThreadCalendar = [NSCalendar currentCalendar];
+        [currentThread.threadDictionary setObject:cachedThreadCalendar forKey:NTSDateOnlyCurrentCalendarKey];
+    }
+    
+	return cachedThreadCalendar;
 }
 
 + (NTSDateOnly *)today
@@ -44,7 +47,7 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	NSDate *date = [[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate date]];
 	NTSDateOnly *dateOnly = [[[NTSDateOnly alloc] initWithDate:date] autorelease];
 	[date release];
-	
+    
 	return dateOnly;
 }
 
@@ -54,6 +57,11 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	NTSDateOnly *ntsDateOnly = [[NTSDateOnly alloc] initWithDate:date];
 	[date release], date = nil;
 	return [ntsDateOnly autorelease];
+}
+
++ (NTSDateOnly *)startOfWeekDate:(NTSDateOnly *)aDate
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate startOfWeekDate:[aDate dateValue]]];
 }
 
 + (NTSDateOnly *)startOfMonthDate:(NTSDateOnly *)aDate
@@ -76,11 +84,26 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
 + (NTSDateOnly *)startOfPreviousYearDate:(NTSDateOnly *)aDate
 {
-	if (aDate == nil) {
-		return nil;
-	}
+    if (aDate == nil) {
+        return nil;
+    }
+    
+    return [[[NTSDateOnly alloc] initWithYear:[aDate year] - 1 month:1 day:1] autorelease];
+}
 
-	return [[[NTSDateOnly alloc] initWithYear:[aDate year] - 1 month:1 day:1] autorelease];
++ (NTSDateOnly *)endOfWeekDate:(NTSDateOnly *)aDate
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate endOfWeekDate:[aDate dateValue]]];
+}
+
++ (NTSDateOnly *)endOfMonthDate:(NTSDateOnly *)aDate;
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate endOfMonthDate:[aDate dateValue]]];
+}
+
++ (NTSDateOnly *)endOfYearDate:(NTSDateOnly *)aDate;
+{
+    return [NTSDateOnly dateOnlyWithDate:[NSDate endOfYearDate:[aDate dateValue]]];
 }
 
 + (NTSDateOnly *)dateWithNumber:(NSNumber *)aNumber
@@ -235,6 +258,17 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	return [NSNumber numberWithUnsignedLong:dateYMD];
 }
 
+- (NSComparisonResult)compare:(NTSDateOnly *)other
+{
+    if ([self dateYMD] < [other dateYMD]) {
+        return NSOrderedAscending;
+    } else if ([self dateYMD] > [other dateYMD]) {
+        return NSOrderedDescending;
+    }
+    
+    return NSOrderedSame;
+}
+
 - (BOOL)isEqualTo:(NTSDateOnly *)aDate
 {
 	return (self.dateYMD == aDate.dateYMD) ? YES : NO;
@@ -292,6 +326,39 @@ static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 	return [date autorelease];
 }
 
-@synthesize dateYMD;
+- (NSInteger)timeIntervalInDaysSinceDate:(NTSDateOnly *)referenceDate
+{
+    return [[self dateValue] timeIntervalInDaysSinceDate:[referenceDate dateValue]];
+}
+
+- (NSString *)label
+{
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+	return [NSString stringWithFormat:@"%@", [self dateValue]];
+#elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
+	return [NSString stringWithFormat:@"%@", [[self dateValue] descriptionWithCalendarFormat:@"%d %b %Y" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+#endif
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[NTSDateOnly allocWithZone:zone] initWithDateYMD:self.dateYMD];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[NTSDateOnly class]] == NO) {
+        return NO;
+    }
+    
+    NTSDateOnly *dateOnlyObject = (NTSDateOnly *)object;
+    
+    return (dateOnlyObject.year == self.year && dateOnlyObject.month == self.month && dateOnlyObject.day == self.day);
+}
+
+- (NSUInteger)hash
+{
+    return [self intValue];
+}
 
 @end

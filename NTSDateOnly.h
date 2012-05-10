@@ -10,18 +10,21 @@
 
 @class NTSYearMonth;
 
-@interface NTSDateOnly : NSObject {
+@interface NTSDateOnly : NSObject <NSCopying> {
 	NSUInteger dateYMD;
 }
 
 + (NSCalendar *)currentCalendar;
-+ (NSCalendar *)standardizedCalendar;
 + (NTSDateOnly *)today;
 + (NTSDateOnly *)tomorrow;
 + (NTSDateOnly *)yesterday;
++ (NTSDateOnly *)startOfWeekDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfMonthDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfYearDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)startOfPreviousYearDate:(NTSDateOnly *)aDate;
++ (NTSDateOnly *)endOfWeekDate:(NTSDateOnly *)aDate;
++ (NTSDateOnly *)endOfMonthDate:(NTSDateOnly *)aDate;
++ (NTSDateOnly *)endOfYearDate:(NTSDateOnly *)aDate;
 + (NTSDateOnly *)dateWithNumber:(NSNumber *)aNumber;
 + (NTSDateOnly *)dateOnlyWithDate:(NSDate *)aDate;
 
@@ -47,6 +50,7 @@
 - (NSDate *)dateValue;
 - (NSNumber *)numberValue;
 
+- (NSComparisonResult)compare:(NTSDateOnly *)other;
 - (BOOL)isEqualTo:(NTSDateOnly *)aDate;
 - (BOOL)isLessThan:(NTSDateOnly *)aDate;
 - (BOOL)isLessThanOrEqualTo:(NTSDateOnly *)aDate;
@@ -57,6 +61,10 @@
 - (NTSDateOnly *)dateByAddingWeeks:(NSInteger)weeks;
 - (NTSDateOnly *)dateByAddingMonths:(NSInteger)months;
 - (NTSDateOnly *)dateByAddingYears:(NSInteger)years;
+
+- (NSInteger)timeIntervalInDaysSinceDate:(NTSDateOnly *)referenceDate;
+
+- (NSString *)label;
 
 @property (assign) NSUInteger dateYMD;
 

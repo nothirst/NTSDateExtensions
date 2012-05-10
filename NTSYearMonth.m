@@ -17,6 +17,10 @@
 
 @implementation NTSYearMonth
 
+@synthesize year;
+@synthesize month;
+@synthesize day;
+
 - (id)init
 {
 	return [self initWithDateOnly:[NTSDateOnly today]];
@@ -30,7 +34,7 @@
 
 - (id)initWithDateOnly:(NTSDateOnly *)aDate startDay:(NSInteger)aDay
 {
-	[self initWithYear:aDate.year month:aDate.month day:aDay];
+	self = [self initWithYear:aDate.year month:aDate.month day:aDay];
 	if ([aDate isGreaterThan:[self createEndDate]]) {
 		[self incrementMonth];
 	} else if ([aDate isLessThan:[self createStartDate]]) {
@@ -87,10 +91,24 @@
 {
 	// The day doesn't matter because the month and year are the label designators
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
-	return [NSString stringWithFormat:@"%@", [[[NTSDateOnly alloc] initWithYear:self.year month:self.month day:1] dateValue]];
+    NTSDateOnly *dateOnly = [[NTSDateOnly alloc] initWithYear:self.year month:self.month day:1];
+    NSString *label = [NSString stringWithFormat:@"%@", [dateOnly dateValue]];
+    [dateOnly release], dateOnly = nil;
+	return label;
 #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
 	return [NSString stringWithFormat:@"%@", [[[[NTSDateOnly alloc] initWithYear:self.year month:self.month day:1] dateValue] descriptionWithCalendarFormat:@"%b %Y" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
 #endif
+}
+
+- (NSComparisonResult)compare:(NTSYearMonth *)other
+{
+    if ([self integerValue] < [other integerValue]) {
+        return NSOrderedAscending;
+    } else if ([self integerValue] > [other integerValue]) {
+        return NSOrderedDescending;
+    }
+    
+    return NSOrderedSame;
 }
 
 - (NSInteger)integerValue
@@ -201,8 +219,25 @@
 	return [NSString stringWithFormat:@"%@/%@", [self label], ([self isFirstHalfDate:aDate]) ? NSLocalizedString(@"First Half", @"First Half"):NSLocalizedString(@"Second Half", @"Second Half")];
 }
 
-@synthesize year;
-@synthesize month;
-@synthesize day;
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[NTSYearMonth allocWithZone:zone] initWithYear:self.year month:self.month day:self.day];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[NTSYearMonth class]] == NO) {
+        return NO;
+    }
+    
+    NTSYearMonth *yearMonthObject = (NTSYearMonth *)object;
+    
+    return (yearMonthObject.year == self.year && yearMonthObject.month == self.month);
+}
+
+- (NSUInteger)hash
+{
+    return [self integerValue];
+}
 
 @end
