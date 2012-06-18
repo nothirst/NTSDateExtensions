@@ -204,17 +204,17 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 
 - (const char *)UTF8String
 {
-	return [[NSString stringWithFormat:@"%u", dateYMD] UTF8String];
+	return [[NSString stringWithFormat:@"%lu", dateYMD] UTF8String];
 }
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"%u", dateYMD];
+	return [NSString stringWithFormat:@"%lu", dateYMD];
 }
 
 - (NSString *)debugDescription
 {
-	return [NSString stringWithFormat:@"{\nyear: %d\nmonth: %d\nday: %d\n}", [self year], [self month], [self day]];
+	return [NSString stringWithFormat:@"{\nyear: %ld\nmonth: %ld\nday: %ld\n}", [self year], [self month], [self day]];
 }
 
 - (NSInteger)year

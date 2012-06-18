@@ -84,7 +84,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"{year = %d; month = %d; day = %d}", self.year, self.month, self.day];
+	return [NSString stringWithFormat:@"{year = %ld; month = %ld; day = %ld}", self.year, self.month, self.day];
 }
 
 - (NSString *)label
