@@ -11,6 +11,7 @@
 @interface NSDate (NTSExtensions)
 
 + (NSCalendar *)currentCalendar;
++ (NSDate *)zeroHourDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay;
 + (NSDate *)zeroHourDate:(NSDate *)aDate;
 + (NSDate *)zeroHourToday;
 + (NSDate *)zeroHourYesterday;

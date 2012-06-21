@@ -26,6 +26,18 @@ static NSInteger standardizedHour = 12;
 	return currentCalendar;
 }
 
++ (NSDate *)zeroHourDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay
+{
+	NSDateComponents *comps = [[NSDateComponents alloc] init];
+	[comps setYear:aYear];
+	[comps setMonth:aMonth];
+	[comps setDay:aDay];
+	[comps setHour:0];
+	NSDate *date = [[NSDate currentCalendar] dateFromComponents:comps];
+	[comps release], comps = nil;
+	return date;
+}
+
 + (NSDate *)zeroHourDate:(NSDate *)aDate
 {
 	if (aDate == nil) {
@@ -173,7 +185,9 @@ static NSInteger standardizedHour = 12;
 	}
     
     NSRange monthRange = [[NSDate currentCalendar] rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:aDate];
-    return [[self startOfMonthDate:aDate] dateByAddingDays:monthRange.length - 1];
+	NSDateComponents *comps = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:aDate];
+	[comps setDay:monthRange.length];
+	return [[NSDate currentCalendar] dateFromComponents:comps];
 }
 
 + (NSDate *)endOfYearDate:(NSDate *)aDate
