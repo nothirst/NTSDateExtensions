@@ -11,7 +11,6 @@
 #import "NSDate_NTSExtensions.h"
 #import "NTSDateOnly.h"
 
-static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 static NSInteger standardizedHour = 12;
 
 @implementation NSDate (NTSExtensions)
@@ -55,7 +54,7 @@ static NSInteger standardizedHour = 12;
 
 + (NSDate *)zeroHourYesterday
 {
-	return [[[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate zeroHourToday]] autorelease];
+	return [[NSDate zeroHourToday] dateByAddingDays:-1];
 }
 
 + (NSDate *)midnightDate:(NSDate *)aDate
@@ -78,7 +77,7 @@ static NSInteger standardizedHour = 12;
 
 + (NSDate *)midnightYesterday
 {
-	return [[[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate midnightToday]] autorelease];
+	return [[NSDate midnightToday] dateByAddingDays:-1];
 }
 
 + (NSDate *)standardizedDate:(NSDate *)aDate
@@ -111,12 +110,12 @@ static NSInteger standardizedHour = 12;
 
 + (NSDate *)standardizedYesterday
 {
-	return [[[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate standardizedToday]] autorelease];
+	return [[NSDate standardizedToday] dateByAddingDays:-1];
 }
 
 + (NSDate *)standardizedTomorrow
 {
-	return [[[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate standardizedToday]] autorelease];
+	return [[NSDate standardizedToday] dateByAddingDays:1];
 }
 
 + (NSDate *)startOfWeekDate:(NSDate *)aDate
@@ -207,12 +206,20 @@ static NSInteger standardizedHour = 12;
 
 - (NSDate *)dateByAddingDays:(NSInteger)days
 {
-	return [[[NSDate alloc] initWithTimeInterval:(NSTimeInterval)days * dayTimeInterval sinceDate:self]  autorelease];
+	NSDateComponents *comps = [[NSDateComponents alloc] init];
+	[comps setDay:days];
+	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
+	[comps release], comps = nil;
+	return date;
 }
 
 - (NSDate *)dateByAddingWeeks:(NSInteger)weeks
 {
-	return [self dateByAddingDays:(weeks * 7)];
+	NSDateComponents *comps = [[NSDateComponents alloc] init];
+	[comps setWeek:weeks];
+	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
+	[comps release], comps = nil;
+	return date;
 }
 
 - (NSDate *)dateByAddingMonths:(NSInteger)months
@@ -275,7 +282,11 @@ static NSInteger standardizedHour = 12;
 	NSDate *zeroHourDate = [NSDate zeroHourDate:self];
 	NSDate *zeroHourReferenceDate = [NSDate zeroHourDate:referenceDate];
 
-	return (NSInteger)([zeroHourDate timeIntervalSinceDate:zeroHourReferenceDate] / dayTimeInterval);
+    NSUInteger unitFlags = NSDayCalendarUnit;
+    NSDateComponents *components = [[NSDate currentCalendar] components:unitFlags fromDate:zeroHourReferenceDate toDate:zeroHourDate options:0];
+    NSInteger days = [components day];
+    
+    return days;
 }
 
 @end
