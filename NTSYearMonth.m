@@ -93,7 +93,7 @@
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
     NTSDateOnly *dateOnly = [[NTSDateOnly alloc] initWithYear:self.year month:self.month day:1];
     NSString *label = [NSString stringWithFormat:@"%@", [dateOnly dateValue]];
-    [dateOnly release], dateOnly = nil;
+    dateOnly = nil;
 	return label;
 #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
 	return [NSString stringWithFormat:@"%@", [[[[NTSDateOnly alloc] initWithYear:self.year month:self.month day:1] dateValue] descriptionWithCalendarFormat:@"%b %Y" timeZone:nil locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
@@ -138,7 +138,7 @@
 {
 	NTSYearMonth *currentYearMonth = [[NTSYearMonth alloc] init];
 	BOOL isCurrent = (self.year == currentYearMonth.year && self.month == currentYearMonth.month) ? YES : NO;
-	[currentYearMonth release], currentYearMonth = nil;
+	currentYearMonth = nil;
 	return isCurrent;
 }
 
@@ -155,8 +155,8 @@
 	[comps setMonth:monthToUse];
 	[comps setYear:self.year];
 	NSDate *testDate = [[NSDate currentCalendar] dateFromComponents:comps];
-	[comps release], comps = nil;
-	return [[[NTSDateOnly alloc] initWithDate:testDate] autorelease];
+	comps = nil;
+	return [[NTSDateOnly alloc] initWithDate:testDate];
 }
 
 - (NTSDateOnly *)createStartDateWithDay:(NSInteger)dayOfMonth
@@ -170,8 +170,8 @@
 	[comps setMonth:monthToUse];
 	[comps setYear:self.year];
 	NTSDateOnly *dateOnly = [[NTSDateOnly alloc] initWithDate:[[NSDate currentCalendar] dateFromComponents:comps]];
-	[comps release], comps = nil;
-	return [dateOnly autorelease];
+	comps = nil;
+	return dateOnly;
 }
 
 - (NTSDateOnly *)createEndDateWithDay:(NSInteger)dayOfMonth
@@ -185,8 +185,8 @@
 	[comps setMonth:monthToUse];
 	[comps setYear:self.year];
 	NTSDateOnly *dateOnly = [[NTSDateOnly alloc] initWithDate:[[NSDate currentCalendar] dateFromComponents:comps]];
-	[comps release], comps = nil;
-	return [dateOnly autorelease];
+	comps = nil;
+	return dateOnly;
 }
 
 - (NTSDateOnly *)createStartDate

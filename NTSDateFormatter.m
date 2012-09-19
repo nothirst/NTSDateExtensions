@@ -27,9 +27,8 @@
 	workingSet = [[NSCharacterSet punctuationCharacterSet] mutableCopy];
 	[workingSet addCharactersInString:@" "];
 	finalCharSet = [workingSet copy];
-	[workingSet release];
 	[scanner setCharactersToBeSkipped:finalCharSet];
-    [finalCharSet release], finalCharSet = nil;
+    finalCharSet = nil;
 
 	if ([scanner scanInteger:&first]) {
 		if ([scanner scanInteger:&second]) {

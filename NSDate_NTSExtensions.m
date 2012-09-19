@@ -19,7 +19,7 @@ static NSInteger standardizedHour = 12;
 {
 	static NSCalendar *currentCalendar = nil;
 	if (currentCalendar == nil) {
-		currentCalendar = [[NSCalendar currentCalendar] retain];
+		currentCalendar = [NSCalendar currentCalendar];
 	}
 
 	return currentCalendar;
@@ -33,7 +33,7 @@ static NSInteger standardizedHour = 12;
 	[comps setDay:aDay];
 	[comps setHour:0];
 	NSDate *date = [[NSDate currentCalendar] dateFromComponents:comps];
-	[comps release], comps = nil;
+	comps = nil;
 	return date;
 }
 
@@ -99,7 +99,7 @@ static NSInteger standardizedHour = 12;
 	[comps setDay:aDay];
 	[comps setHour:standardizedHour];
 	NSDate *date = [[NSDate currentCalendar] dateFromComponents:comps];
-	[comps release], comps = nil;
+	comps = nil;
 	return date;
 }
 
@@ -209,7 +209,7 @@ static NSInteger standardizedHour = 12;
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setDay:days];
 	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
-	[comps release], comps = nil;
+	comps = nil;
 	return date;
 }
 
@@ -218,7 +218,7 @@ static NSInteger standardizedHour = 12;
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setWeek:weeks];
 	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
-	[comps release], comps = nil;
+	comps = nil;
 	return date;
 }
 
@@ -227,7 +227,7 @@ static NSInteger standardizedHour = 12;
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setMonth:months];
 	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
-	[comps release], comps = nil;
+	comps = nil;
 	return date;
 }
 
@@ -236,7 +236,7 @@ static NSInteger standardizedHour = 12;
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setYear:years];
 	NSDate *date = [[NSDate currentCalendar] dateByAddingComponents:comps toDate:self options:0];
-	[comps release], comps = nil;
+	comps = nil;
 	return date;
 }
 
@@ -245,7 +245,7 @@ static NSInteger standardizedHour = 12;
 	NSDate *today = [[NSDate alloc] init];
 	NSDateComponents *todayComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
 
-	[today release], today = nil;
+	today = nil;
 
 	NSDateComponents *selfComponents = [[NSDate currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
 

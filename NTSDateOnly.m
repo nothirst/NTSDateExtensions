@@ -39,14 +39,13 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 
 + (NTSDateOnly *)today
 {
-	return [[[NTSDateOnly alloc] init] autorelease];
+	return [[NTSDateOnly alloc] init];
 }
 
 + (NTSDateOnly *)tomorrow
 {
 	NSDate *date = [[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate date]];
-	NTSDateOnly *dateOnly = [[[NTSDateOnly alloc] initWithDate:date] autorelease];
-	[date release];
+	NTSDateOnly *dateOnly = [[NTSDateOnly alloc] initWithDate:date];
     
 	return dateOnly;
 }
@@ -55,8 +54,8 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 {
 	NSDate *date = [[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate date]];
 	NTSDateOnly *ntsDateOnly = [[NTSDateOnly alloc] initWithDate:date];
-	[date release], date = nil;
-	return [ntsDateOnly autorelease];
+	date = nil;
+	return ntsDateOnly;
 }
 
 + (NTSDateOnly *)startOfWeekDate:(NTSDateOnly *)aDate
@@ -70,7 +69,7 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 		return nil;
 	}
 
-	return [[[NTSDateOnly alloc] initWithYear:[aDate year] month:[aDate month] day:1] autorelease];
+	return [[NTSDateOnly alloc] initWithYear:[aDate year] month:[aDate month] day:1];
 }
 
 + (NTSDateOnly *)startOfYearDate:(NTSDateOnly *)aDate
@@ -79,7 +78,7 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 		return nil;
 	}
 
-	return [[[NTSDateOnly alloc] initWithYear:[aDate year] month:1 day:1] autorelease];
+	return [[NTSDateOnly alloc] initWithYear:[aDate year] month:1 day:1];
 }
 
 + (NTSDateOnly *)startOfPreviousYearDate:(NTSDateOnly *)aDate
@@ -88,7 +87,7 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
         return nil;
     }
     
-    return [[[NTSDateOnly alloc] initWithYear:[aDate year] - 1 month:1 day:1] autorelease];
+    return [[NTSDateOnly alloc] initWithYear:[aDate year] - 1 month:1 day:1];
 }
 
 + (NTSDateOnly *)endOfWeekDate:(NTSDateOnly *)aDate
@@ -108,12 +107,12 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 
 + (NTSDateOnly *)dateWithNumber:(NSNumber *)aNumber
 {
-	return [[[NTSDateOnly alloc] initWithNumber:aNumber] autorelease];
+	return [[NTSDateOnly alloc] initWithNumber:aNumber];
 }
 
 + (NTSDateOnly *)dateOnlyWithDate:(NSDate *)aDate
 {
-	return [[[NTSDateOnly alloc] initWithDate:aDate] autorelease];
+	return [[NTSDateOnly alloc] initWithDate:aDate];
 }
 
 - (id)init
@@ -161,7 +160,7 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 	[comps setMonth:aMonth];
 	[comps setYear:aYear];
 	NSDate *normalizedDate = [[NTSDateOnly currentCalendar] dateFromComponents:comps];
-	[comps release], comps = nil;
+	comps = nil;
 	comps = [[NTSDateOnly currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:normalizedDate];
 	NSUInteger aDateYMD = ([comps year] * 10000) + ([comps month] * 100) + [comps day];
 
@@ -249,7 +248,7 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 	[comps setMonth:[self month]];
 	[comps setYear:[self year]];
 	NSDate *d = [[NTSDateOnly currentCalendar] dateFromComponents:comps];
-	[comps release], comps = nil;
+	comps = nil;
 	return d;
 }
 
@@ -299,8 +298,8 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setDay:days];
 	NTSDateOnly *date = [[NTSDateOnly alloc] initWithDate:[[NSDate currentCalendar] dateByAddingComponents:comps toDate:[self dateValue] options:0]];
-	[comps release], comps = nil;
-	return [date autorelease];
+	comps = nil;
+	return date;
 }
 
 - (NTSDateOnly *)dateByAddingWeeks:(NSInteger)weeks
@@ -313,8 +312,8 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setMonth:months];
 	NTSDateOnly *date = [[NTSDateOnly alloc] initWithDate:[[NSDate currentCalendar] dateByAddingComponents:comps toDate:[self dateValue] options:0]];
-	[comps release], comps = nil;
-	return [date autorelease];
+	comps = nil;
+	return date;
 }
 
 - (NTSDateOnly *)dateByAddingYears:(NSInteger)years
@@ -322,8 +321,8 @@ NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setYear:years];
 	NTSDateOnly *date = [[NTSDateOnly alloc] initWithDate:[[NSDate currentCalendar] dateByAddingComponents:comps toDate:[self dateValue] options:0]];
-	[comps release], comps = nil;
-	return [date autorelease];
+	comps = nil;
+	return date;
 }
 
 - (NSInteger)timeIntervalInDaysSinceDate:(NTSDateOnly *)referenceDate
