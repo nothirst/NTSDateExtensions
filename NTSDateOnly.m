@@ -15,7 +15,7 @@
 
 static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
-NSSTRING_CONST(NTSDateOnlyCurrentCalendarKey);
+NSString *const NTSDateOnlyCurrentCalendarKey = @"NTSDateOnlyCurrentCalendarKey";
 
 @implementation NTSDateOnly
 

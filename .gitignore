@@ -1,0 +1,14 @@
+build
+*.xcodeproj/*.mode*
+*.xcodeproj/*pbxuser
+*.xcodeproj/*perspective*
+**/build
+**/*.xcodeproj/*.mode*
+**/*.xcodeproj/*pbxuser
+**/*.xcodeproj/*perspective*
+*tmproj
+**/~*
+.DS_Store
+*.xcodeproj/project.xcworkspace/xcuserdata/*
+*.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+*.xcodeproj/xcuserdata/*

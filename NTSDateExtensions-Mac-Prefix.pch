@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'NTSDateExtensions-Mac' target in the 'NTSDateExtensions-Mac' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
