@@ -213,10 +213,6 @@
 		1390C0661615E9EB000781F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv6,
-				);
 				DSTROOT = /tmp/NTSDateExtensions_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTSDateExtensions-iOS-Prefix.pch";
@@ -229,10 +225,6 @@
 		1390C0671615E9EB000781F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv6,
-				);
 				DSTROOT = /tmp/NTSDateExtensions_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTSDateExtensions-iOS-Prefix.pch";
