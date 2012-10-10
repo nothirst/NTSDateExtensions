@@ -188,12 +188,12 @@ NSString *const NTSDateOnlyCurrentCalendarKey = @"NTSDateOnlyCurrentCalendarKey"
 
 - (unsigned int)unsignedIntValue
 {
-	return dateYMD;
+	return (unsigned int)dateYMD;
 }
 
 - (unsigned int)intValue
 {
-	return dateYMD;
+	return (unsigned int)dateYMD;
 }
 
 - (long long)longLongValue
