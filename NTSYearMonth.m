@@ -8,7 +8,7 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-#import "NSDate_NTSExtensions.h"
+#import "NSDate+NTSAdditions.h"
 #import "NTSDateOnly.h"
 #import "NTSYearMonth.h"
 

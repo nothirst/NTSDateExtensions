@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1390C0B31615ECAA000781F4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1390C0B21615ECAA000781F4 /* Cocoa.framework */; };
-		1390C0D21615ED01000781F4 /* NSDate_NTSExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CA1615ED01000781F4 /* NSDate_NTSExtensions.h */; };
-		1390C0D31615ED01000781F4 /* NSDate_NTSExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0CB1615ED01000781F4 /* NSDate_NTSExtensions.m */; };
-		1390C0D41615ED01000781F4 /* NTSDateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CC1615ED01000781F4 /* NTSDateFormatter.h */; };
+		1390C0D21615ED01000781F4 /* NSDate+NTSAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CA1615ED01000781F4 /* NSDate+NTSAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1390C0D31615ED01000781F4 /* NSDate+NTSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0CB1615ED01000781F4 /* NSDate+NTSAdditions.m */; };
+		1390C0D41615ED01000781F4 /* NTSDateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CC1615ED01000781F4 /* NTSDateFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1390C0D51615ED01000781F4 /* NTSDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0CD1615ED01000781F4 /* NTSDateFormatter.m */; };
-		1390C0D61615ED01000781F4 /* NTSDateOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CE1615ED01000781F4 /* NTSDateOnly.h */; };
+		1390C0D61615ED01000781F4 /* NTSDateOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CE1615ED01000781F4 /* NTSDateOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1390C0D71615ED01000781F4 /* NTSDateOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0CF1615ED01000781F4 /* NTSDateOnly.m */; };
-		1390C0D81615ED01000781F4 /* NTSYearMonth.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0D01615ED01000781F4 /* NTSYearMonth.h */; };
+		1390C0D81615ED01000781F4 /* NTSYearMonth.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0D01615ED01000781F4 /* NTSYearMonth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1390C0D91615ED01000781F4 /* NTSYearMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0D11615ED01000781F4 /* NTSYearMonth.m */; };
 /* End PBXBuildFile section */
 
@@ -25,8 +25,8 @@
 		1390C0B61615ECAA000781F4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1390C0B71615ECAA000781F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1390C0BA1615ECAA000781F4 /* NTSDateExtensions-Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NTSDateExtensions-Mac-Prefix.pch"; sourceTree = "<group>"; };
-		1390C0CA1615ED01000781F4 /* NSDate_NTSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_NTSExtensions.h; sourceTree = SOURCE_ROOT; };
-		1390C0CB1615ED01000781F4 /* NSDate_NTSExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_NTSExtensions.m; sourceTree = SOURCE_ROOT; };
+		1390C0CA1615ED01000781F4 /* NSDate+NTSAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NTSAdditions.h"; sourceTree = SOURCE_ROOT; };
+		1390C0CB1615ED01000781F4 /* NSDate+NTSAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NTSAdditions.m"; sourceTree = SOURCE_ROOT; };
 		1390C0CC1615ED01000781F4 /* NTSDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTSDateFormatter.h; sourceTree = SOURCE_ROOT; };
 		1390C0CD1615ED01000781F4 /* NTSDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSDateFormatter.m; sourceTree = SOURCE_ROOT; };
 		1390C0CE1615ED01000781F4 /* NTSDateOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTSDateOnly.h; sourceTree = SOURCE_ROOT; };
@@ -87,8 +87,8 @@
 		1390C0B81615ECAA000781F4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1390C0CA1615ED01000781F4 /* NSDate_NTSExtensions.h */,
-				1390C0CB1615ED01000781F4 /* NSDate_NTSExtensions.m */,
+				1390C0CA1615ED01000781F4 /* NSDate+NTSAdditions.h */,
+				1390C0CB1615ED01000781F4 /* NSDate+NTSAdditions.m */,
 				1390C0CC1615ED01000781F4 /* NTSDateFormatter.h */,
 				1390C0CD1615ED01000781F4 /* NTSDateFormatter.m */,
 				1390C0CE1615ED01000781F4 /* NTSDateOnly.h */,
@@ -116,7 +116,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1390C0D21615ED01000781F4 /* NSDate_NTSExtensions.h in Headers */,
+				1390C0D21615ED01000781F4 /* NSDate+NTSAdditions.h in Headers */,
 				1390C0D41615ED01000781F4 /* NTSDateFormatter.h in Headers */,
 				1390C0D61615ED01000781F4 /* NTSDateOnly.h in Headers */,
 				1390C0D81615ED01000781F4 /* NTSYearMonth.h in Headers */,
@@ -174,7 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1390C0D31615ED01000781F4 /* NSDate_NTSExtensions.m in Sources */,
+				1390C0D31615ED01000781F4 /* NSDate+NTSAdditions.m in Sources */,
 				1390C0D51615ED01000781F4 /* NTSDateFormatter.m in Sources */,
 				1390C0D71615ED01000781F4 /* NTSDateOnly.m in Sources */,
 				1390C0D91615ED01000781F4 /* NTSYearMonth.m in Sources */,
@@ -208,7 +208,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -232,7 +232,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;

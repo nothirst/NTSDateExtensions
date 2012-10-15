@@ -8,7 +8,7 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-@interface NSDate (NTSExtensions)
+@interface NSDate (NTSAdditions)
 
 + (NSCalendar *)currentCalendar;
 + (NSDate *)zeroHourDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay;

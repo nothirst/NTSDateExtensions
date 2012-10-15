@@ -8,12 +8,12 @@
 //  Simply include Kevin Hoctor in your credits if you utilize it.
 //
 
-#import "NSDate_NTSExtensions.h"
+#import "NSDate+NTSAdditions.h"
 #import "NTSDateOnly.h"
 
 static NSInteger standardizedHour = 12;
 
-@implementation NSDate (NTSExtensions)
+@implementation NSDate (NTSAdditions)
 
 + (NSCalendar *)currentCalendar
 {
