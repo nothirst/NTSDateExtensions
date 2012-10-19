@@ -1,5 +1,5 @@
 //
-//  NSDate_NTSExtensions.h
+//  NSDate+NTSAdditions.h
 //
 //  Created by Kevin Hoctor on 3/16/08.
 //  Copyright 2010 No Thirst Software LLC

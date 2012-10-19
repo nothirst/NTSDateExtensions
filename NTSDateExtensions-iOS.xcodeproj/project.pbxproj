@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1390C05B1615E9EB000781F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1390C05A1615E9EB000781F4 /* Foundation.framework */; };
-		1390C07A1615EAC5000781F4 /* NSDate_NTSExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0731615EAC5000781F4 /* NSDate_NTSExtensions.m */; };
 		1390C07B1615EAC5000781F4 /* NTSDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0751615EAC5000781F4 /* NTSDateFormatter.m */; };
 		1390C07C1615EAC5000781F4 /* NTSDateOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0771615EAC5000781F4 /* NTSDateOnly.m */; };
 		1390C07D1615EAC5000781F4 /* NTSYearMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0791615EAC5000781F4 /* NTSYearMonth.m */; };
@@ -30,8 +29,8 @@
 		1390C0571615E9EB000781F4 /* libNTSDateExtensions-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libNTSDateExtensions-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1390C05A1615E9EB000781F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1390C0711615EA89000781F4 /* NTSDateExtensions-iOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NTSDateExtensions-iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		1390C0721615EAC5000781F4 /* NSDate_NTSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_NTSExtensions.h; sourceTree = SOURCE_ROOT; };
-		1390C0731615EAC5000781F4 /* NSDate_NTSExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_NTSExtensions.m; sourceTree = SOURCE_ROOT; };
+		1390C0721615EAC5000781F4 /* NSDate+NTSAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NTSAdditions.h"; sourceTree = SOURCE_ROOT; };
+		1390C0731615EAC5000781F4 /* NSDate+NTSAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NTSAdditions.m"; sourceTree = SOURCE_ROOT; };
 		1390C0741615EAC5000781F4 /* NTSDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTSDateFormatter.h; sourceTree = SOURCE_ROOT; };
 		1390C0751615EAC5000781F4 /* NTSDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSDateFormatter.m; sourceTree = SOURCE_ROOT; };
 		1390C0761615EAC5000781F4 /* NTSDateOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTSDateOnly.h; sourceTree = SOURCE_ROOT; };
@@ -81,8 +80,8 @@
 		1390C05C1615E9EB000781F4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1390C0721615EAC5000781F4 /* NSDate_NTSExtensions.h */,
-				1390C0731615EAC5000781F4 /* NSDate_NTSExtensions.m */,
+				1390C0721615EAC5000781F4 /* NSDate+NTSAdditions.h */,
+				1390C0731615EAC5000781F4 /* NSDate+NTSAdditions.m */,
 				1390C0741615EAC5000781F4 /* NTSDateFormatter.h */,
 				1390C0751615EAC5000781F4 /* NTSDateFormatter.m */,
 				1390C0761615EAC5000781F4 /* NTSDateOnly.h */,
@@ -154,7 +153,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1390C07A1615EAC5000781F4 /* NSDate_NTSExtensions.m in Sources */,
 				1390C07B1615EAC5000781F4 /* NTSDateFormatter.m in Sources */,
 				1390C07C1615EAC5000781F4 /* NTSDateOnly.m in Sources */,
 				1390C07D1615EAC5000781F4 /* NTSYearMonth.m in Sources */,
