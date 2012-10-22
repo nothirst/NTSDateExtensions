@@ -11,6 +11,7 @@
 		1390C07B1615EAC5000781F4 /* NTSDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0751615EAC5000781F4 /* NTSDateFormatter.m */; };
 		1390C07C1615EAC5000781F4 /* NTSDateOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0771615EAC5000781F4 /* NTSDateOnly.m */; };
 		1390C07D1615EAC5000781F4 /* NTSYearMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0791615EAC5000781F4 /* NTSYearMonth.m */; };
+		139344AB16357094003421F5 /* NSDate+NTSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0731615EAC5000781F4 /* NSDate+NTSAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -153,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				139344AB16357094003421F5 /* NSDate+NTSAdditions.m in Sources */,
 				1390C07B1615EAC5000781F4 /* NTSDateFormatter.m in Sources */,
 				1390C07C1615EAC5000781F4 /* NTSDateOnly.m in Sources */,
 				1390C07D1615EAC5000781F4 /* NTSYearMonth.m in Sources */,
