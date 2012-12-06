@@ -8,13 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1390C0B31615ECAA000781F4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1390C0B21615ECAA000781F4 /* Cocoa.framework */; };
-		1390C0D21615ED01000781F4 /* NSDate+NTSAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CA1615ED01000781F4 /* NSDate+NTSAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1390C0D31615ED01000781F4 /* NSDate+NTSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0CB1615ED01000781F4 /* NSDate+NTSAdditions.m */; };
-		1390C0D41615ED01000781F4 /* NTSDateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CC1615ED01000781F4 /* NTSDateFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1390C0D51615ED01000781F4 /* NTSDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0CD1615ED01000781F4 /* NTSDateFormatter.m */; };
-		1390C0D61615ED01000781F4 /* NTSDateOnly.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0CE1615ED01000781F4 /* NTSDateOnly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1390C0D71615ED01000781F4 /* NTSDateOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0CF1615ED01000781F4 /* NTSDateOnly.m */; };
-		1390C0D81615ED01000781F4 /* NTSYearMonth.h in Headers */ = {isa = PBXBuildFile; fileRef = 1390C0D01615ED01000781F4 /* NTSYearMonth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1390C0D91615ED01000781F4 /* NTSYearMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 1390C0D11615ED01000781F4 /* NTSYearMonth.m */; };
 /* End PBXBuildFile section */
 
@@ -116,10 +112,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1390C0D21615ED01000781F4 /* NSDate+NTSAdditions.h in Headers */,
-				1390C0D41615ED01000781F4 /* NTSDateFormatter.h in Headers */,
-				1390C0D61615ED01000781F4 /* NTSDateOnly.h in Headers */,
-				1390C0D81615ED01000781F4 /* NTSYearMonth.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
