@@ -13,7 +13,6 @@
 #import "NSDate+NTSAdditions.h"
 #import "NTSYearMonth.h"
 
-static NSTimeInterval dayTimeInterval = (60.0 * 60.0 * 24.0);
 
 NSString *const NTSDateOnlyCurrentCalendarKey = @"NTSDateOnlyCurrentCalendarKey";
 
@@ -44,18 +43,16 @@ NSString *const NTSDateOnlyCurrentCalendarKey = @"NTSDateOnlyCurrentCalendarKey"
 
 + (NTSDateOnly *)tomorrow
 {
-	NSDate *date = [[NSDate alloc] initWithTimeInterval:dayTimeInterval sinceDate:[NSDate date]];
-	NTSDateOnly *dateOnly = [[NTSDateOnly alloc] initWithDate:date];
+	NTSDateOnly *tomorrow = [[self today] dateByAddingDays:1];
     
-	return dateOnly;
+	return tomorrow;
 }
 
 + (NTSDateOnly *)yesterday
 {
-	NSDate *date = [[NSDate alloc] initWithTimeInterval:-dayTimeInterval sinceDate:[NSDate date]];
-	NTSDateOnly *ntsDateOnly = [[NTSDateOnly alloc] initWithDate:date];
-	date = nil;
-	return ntsDateOnly;
+	NTSDateOnly *yesterday = [[self today] dateByAddingDays:-1];
+
+	return yesterday;
 }
 
 + (NTSDateOnly *)startOfWeekDate:(NTSDateOnly *)aDate
