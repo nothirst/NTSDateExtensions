@@ -141,7 +141,7 @@
 		1390C0A61615ECAA000781F4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "No Thirst Software LLC";
 			};
 			buildConfigurationList = 1390C0A91615ECAA000781F4 /* Build configuration list for PBXProject "NTSDateExtensions-Mac" */;
@@ -232,6 +232,7 @@
 		1390C0C11615ECAA000781F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTSDateExtensions-Mac-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -241,6 +242,7 @@
 		1390C0C21615ECAA000781F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NTSDateExtensions-Mac-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
