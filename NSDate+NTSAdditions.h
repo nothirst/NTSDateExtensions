@@ -43,4 +43,11 @@
 
 - (NSInteger)timeIntervalInDaysSinceDate:(NSDate *)referenceDate;
 
+// Date Comparisons
+
+- (BOOL)isLaterThanDate:(NSDate *)anotherDate;
+- (BOOL)isLaterThanOrEqualToDate:(NSDate *)anotherDate;
+- (BOOL)isEarlierThanDate:(NSDate *)anotherDate;
+- (BOOL)isEarlierThanOrEqualToDate:(NSDate *)anotherDate;
+
 @end

@@ -289,4 +289,34 @@ static NSInteger standardizedHour = 12;
     return days;
 }
 
+#pragma mark - Comparisons
+
+- (BOOL)isLaterThanDate:(NSDate *)anotherDate
+{
+    NSComparisonResult result = [self compare:anotherDate];
+    
+    return result == NSOrderedDescending;
+}
+
+- (BOOL)isLaterThanOrEqualToDate:(NSDate *)anotherDate
+{
+    NSComparisonResult result = [self compare:anotherDate];
+    
+    return result == NSOrderedDescending || result == NSOrderedSame;
+}
+
+- (BOOL)isEarlierThanDate:(NSDate *)anotherDate
+{
+    NSComparisonResult result = [self compare:anotherDate];
+    
+    return result == NSOrderedAscending;
+}
+
+- (BOOL)isEarlierThanOrEqualToDate:(NSDate *)anotherDate
+{
+    NSComparisonResult result = [self compare:anotherDate];
+    
+    return result == NSOrderedAscending || result == NSOrderedSame;
+}
+
 @end
