@@ -12,17 +12,24 @@
 #import "NTSDateOnly.h"
 
 static NSInteger standardizedHour = 12;
+NSString *const NTSDateCurrentCalendarKey = @"NTSDateCurrentCalendarKey";
 
 @implementation NSDate (NTSAdditions)
 
 + (NSCalendar *)currentCalendar
 {
-	static NSCalendar *currentCalendar = nil;
-	if (currentCalendar == nil) {
-		currentCalendar = [NSCalendar currentCalendar];
-	}
-
-	return currentCalendar;
+    NSThread *currentThread = [NSThread currentThread];
+    if (currentThread == nil) { //ZOMBIE THREAD!!
+        return [NSCalendar currentCalendar];
+    }
+    
+    NSCalendar *cachedThreadCalendar = [currentThread.threadDictionary objectForKey:NTSDateCurrentCalendarKey];
+    if (cachedThreadCalendar == nil) {
+        cachedThreadCalendar = [NSCalendar currentCalendar];
+        [currentThread.threadDictionary setObject:cachedThreadCalendar forKey:NTSDateCurrentCalendarKey];
+    }
+    
+	return cachedThreadCalendar;
 }
 
 + (NSDate *)zeroHourDateWithYear:(NSInteger)aYear month:(NSInteger)aMonth day:(NSInteger)aDay
