@@ -236,7 +236,7 @@ NSString *const NTSDateOnlyCurrentCalendarKey = @"NTSDateOnlyCurrentCalendarKey"
 
 - (NSDate *)dateValue
 {
-	if ([self intValue] == 0) {
+	if ([self unsignedIntValue] == 0) {
 		return nil;
 	}
 
@@ -244,9 +244,9 @@ NSString *const NTSDateOnlyCurrentCalendarKey = @"NTSDateOnlyCurrentCalendarKey"
 	[comps setDay:[self day]];
 	[comps setMonth:[self month]];
 	[comps setYear:[self year]];
-	NSDate *d = [[NTSDateOnly currentCalendar] dateFromComponents:comps];
-	comps = nil;
-	return d;
+	NSDate *date = [[NTSDateOnly currentCalendar] dateFromComponents:comps];
+
+	return date;
 }
 
 - (NSNumber *)numberValue
@@ -354,7 +354,7 @@ NSString *const NTSDateOnlyCurrentCalendarKey = @"NTSDateOnlyCurrentCalendarKey"
 
 - (NSUInteger)hash
 {
-    return [self intValue];
+    return [self unsignedIntValue];
 }
 
 @end
