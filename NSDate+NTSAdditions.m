@@ -64,6 +64,11 @@ NSString *const NTSDateCurrentCalendarKey = @"NTSDateCurrentCalendarKey";
 	return [[NSDate zeroHourToday] dateByAddingDays:-1];
 }
 
++ (NSDate *)zeroHourTomorrow
+{
+    return [[NSDate zeroHourToday] dateByAddingDays:1];
+}
+
 + (NSDate *)midnightDate:(NSDate *)aDate
 {
 	if (aDate == nil) {

@@ -15,6 +15,7 @@
 + (NSDate *)zeroHourDate:(NSDate *)aDate;
 + (NSDate *)zeroHourToday;
 + (NSDate *)zeroHourYesterday;
++ (NSDate *)zeroHourTomorrow;
 + (NSDate *)midnightDate:(NSDate *)aDate;
 + (NSDate *)midnightToday;
 + (NSDate *)midnightYesterday;
